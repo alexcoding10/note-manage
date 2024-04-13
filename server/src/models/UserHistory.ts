@@ -16,7 +16,7 @@ interface UserHistory extends Document {
 }
 
 const userHistorySchema = new Schema<UserHistory>({
-    userId: { type: Types.ObjectId, ref: "User" }, // Referencia al ID del usuario original
+    userId: { type: Schema.Types.ObjectId, ref: "User" }, // Referencia al ID del usuario original
     changes: [{
         name: String,
         email: String,
