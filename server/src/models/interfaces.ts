@@ -2,6 +2,17 @@
 import{ StatusNote, StatusUser } from "./enums";
 import { ObjectId ,Document } from "mongodb";
 
+export interface NoteHistory extends Document {
+    noteId: ObjectId; // Referencia al ID de la nota original
+    changes: {
+        title?: string;
+        content?: string;
+        label?: string[];
+        status?: StatusNote;
+        updateAt: Date;
+    }[];
+}
+
 export interface Note extends Document {
     title: string;
     content: string;
