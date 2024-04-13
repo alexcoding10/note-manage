@@ -1,19 +1,6 @@
-import { Schema, model, Document, Types } from "mongoose";
-import{ StatusNote, StatusUser } from "./enums";
-
-
-interface UserHistory extends Document {
-    userId: Types.ObjectId; // Referencia al ID del usuario original
-    changes: {
-        name?: string;
-        email?: string;
-        profileImage?: string;
-        description?: string;
-        friends?: Types.ObjectId[];
-        status?: StatusUser;
-        updateAt: Date;
-    }[];
-}
+import { Schema, model,Types } from "mongoose";
+import{ StatusUser } from "./enums";
+import {UserHistory} from "./interfaces"
 
 const userHistorySchema = new Schema<UserHistory>({
     userId: { type: Schema.Types.ObjectId, ref: "User" }, // Referencia al ID del usuario original
