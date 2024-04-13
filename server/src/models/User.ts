@@ -1,20 +1,8 @@
 import { Schema, model, Document } from "mongoose";
 import { ObjectId } from "mongodb";
-
+import{ StatusNote, StatusUser } from "./enums";
 //Definición de usuarios
 
-export enum StatusNote {
-    Active = "active",
-    Inactive = "inactive",
-    Replaced = "replaced",
-    Deleted = "deleted"
-}
-
-enum StatusUser {
-    Active = "active",
-    Inactive = "inactive",
-    Deleted = "deleted"
-}
 
 export interface Note extends Document {
     title: string;

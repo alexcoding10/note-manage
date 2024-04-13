@@ -1,5 +1,6 @@
 import { Schema, model, Document, Types } from "mongoose";
-import { StatusNote } from "./user";
+import{ StatusNote, StatusUser } from "./enums";
+
 
 // Definición del modelo NoteHistory
 
