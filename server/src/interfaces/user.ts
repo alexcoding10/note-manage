@@ -1,28 +1,10 @@
 
-import{ StatusNote, StatusUser } from "./enums";
+import{ StatusUser } from "../models/enums";
 import { ObjectId ,Document } from "mongodb";
+import { Note } from "./note";
 
-export interface NoteHistory extends Document {
-    noteId: ObjectId; // Referencia al ID de la nota original
-    changes: {
-        title?: string;
-        content?: string;
-        label?: string[];
-        status?: StatusNote;
-        updateAt: Date;
-    }[];
-}
 
-export interface Note extends Document {
-    title: string;
-    content: string;
-    label: string[];
-    status: StatusNote;
-    createdAt: Date;
-    updatedAt: Date;
-    userId?: string;
-}
-
+//INTERFACES USER
 export interface User extends Document {
     name: string;
     email: string; 

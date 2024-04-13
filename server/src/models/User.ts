@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 import{ StatusNote, StatusUser } from "./enums";
-import {Note,User} from "./interfaces"
+import {Note} from "../interfaces/note"
+import { User } from "../interfaces/user";
 
 //Definición de usuarios
 const noteSchema = new Schema<Note>({
