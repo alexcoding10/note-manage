@@ -16,7 +16,7 @@ interface NoteHistory extends Document {
 }
 
 const noteHistorySchema = new Schema<NoteHistory>({
-    noteId: { type: Types.ObjectId, ref: "Note" }, // Referencia al ID de la nota original
+    noteId: { type: Schema.Types.ObjectId, ref: "Note" }, // Referencia al ID de la nota original
     changes: [{
         title: String,
         content: String,
