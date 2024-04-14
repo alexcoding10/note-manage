@@ -1,28 +1,34 @@
-
-import{ StatusNote} from "../models/enums";
-import { ObjectId ,Document } from "mongodb";
-
+import { StatusNote } from "../models/enums";
+import { ObjectId, Document } from "mongodb";
 
 //INTERFACES NOTE
 export interface Note extends Document {
-    title: string;
-    content: string;
-    label: string[];
-    status: StatusNote;
-    createdAt: Date;
-    updatedAt: Date;
-    userId?: string;
+  title: string;
+  content: string;
+  label?: string[];
+  status?: StatusNote;
+  createdAt?: Date;
+  updatedAt?: Date;
+  userId?: string;
 }
 
 export interface NoteHistory extends Document {
-    noteId: ObjectId; // Referencia al ID de la nota original
-    changes: {
-        // siempre tendran estos datos 
-        title: string; 
-        content: string;
-        label: string[];
-        status: StatusNote;
-        updateAt: Date;
-    }[];
+  noteId: ObjectId; // Referencia al ID de la nota original
+  changes: {
+    // siempre tendran estos datos
+    title: string;
+    content: string;
+    label?: string[];
+    status: StatusNote;
+    updateAt: Date;
+  }[];
 }
 
+export interface ResquesNoteFields {
+  body: NotesFiels;
+}
+export interface NotesFiels {
+  title: string;
+  content: string;
+  label?: string[];
+}
