@@ -32,3 +32,34 @@ export const checkReqBodyUser =(req,res,next) => {
         throw error
     }
 }
+
+export const validateUserIdAndGetUser = async (req, res) => {
+    try {
+      // Validar si el ID del usuario es válido
+      const userId = parseInt(req.params.id);
+      if (isNaN(userId)) {
+        return res.status(400).json({
+          status: "400",
+          message: "Invalid user ID",
+        });
+      }
+  
+      // Buscar el usuario en la base de datos por ID
+      const user = await User.findByPk(userId);
+  
+      // Si el usuario no existe, devolver un error 404
+      if (!user) {
+        return res.status(404).json({
+          status: "404",
+          message: "User not found",
+        });
+      }
+  
+      // Si el usuario existe, devolver el usuario
+      return user;
+    } catch (error) {
+      // Manejar cualquier error que ocurra durante la búsqueda
+      console.log(error);
+      throw new Error('Error al validar el ID del usuario y obtenerlo');
+    }
+  };

@@ -24,7 +24,7 @@ const User = sequelizeConnection.define(
       type: DataTypes.STRING,
       defaultValue: "active",
       validate: {
-        isIn: [["active", "inactive"]],
+        isIn: [["active", "inactive","deleted","blocked"]],
       },
     },
   },
