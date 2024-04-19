@@ -2,7 +2,9 @@ import { Router } from "express";
 import {
   createUserHandler,
   getAllUsersHandler,
-  getUserByIdHandler
+  getUserByIdHandler,
+  updateUserHandler,
+  deleteUserHandler
 } from "../controllers/user.controller.js";
 
 
@@ -13,5 +15,9 @@ routerUser.post("/user", createUserHandler);
 routerUser.get("/users", getAllUsersHandler);
 
 routerUser.get("/user/:id", getUserByIdHandler);
+
+routerUser.put("/user/:id", updateUserHandler);
+
+routerUser.delete("/user/:id", deleteUserHandler);
 
 export default routerUser;
