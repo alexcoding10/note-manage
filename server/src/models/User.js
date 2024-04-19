@@ -1,6 +1,7 @@
 import sequelizeConnection from "../conectionDB.js";
 import { DataTypes } from "sequelize";
 import bcrypt from "bcrypt";
+import { Note } from "./note.js";
 
 const User = sequelizeConnection.define(
   "User",
@@ -46,6 +47,11 @@ const User = sequelizeConnection.define(
   }
 );
 
-User.sync(); // Esto sincroniza el modelo con la base de datos
+// Sincroniza el modelo User con la base de datos
+User.sync().then(() => {
+  // Define la relación después de que el modelo esté sincronizado
+  User.belongsToMany(Note, { through: 'UserNote' });
+  Note.belongsToMany(User, { through: 'UserNote' });
+});
 
 export { User };
