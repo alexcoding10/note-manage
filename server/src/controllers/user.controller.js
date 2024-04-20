@@ -60,8 +60,10 @@ export const getAllUsersHandler = async (req, res) => {
 
 export const getUserByIdHandler = async (req, res) => {
   try {
-    const user = await User.findByPk(req.params.id);
-    //console.log(req.params.id);
+    // el usuario ahora lotengo por el middleware del token
+    //const user = await User.findByPk(req.params.id);
+    const user = req.user;
+
     if (!user) {
       return res.status(404).json({
         status: "404",
@@ -83,7 +85,8 @@ export const getUserByIdHandler = async (req, res) => {
 
 export const updateUserHandler = async (req, res) => {
   try {
-    const user = await validateUserIdAndGetUser(req, res);
+    // la info del usuario esta en el req user
+    const user = req.user;
     // TODO Validar la solicitud para asegurarse de que los datos sean seguros y aplicarlos al usuario existente
     await user.update(req.body, { updatedAt: new Date() });
 
@@ -105,7 +108,7 @@ export const updateUserHandler = async (req, res) => {
 export const deleteUserHandler = async (req, res) => {
   try {
     // no se va a borrar de base de datos solo se va a cambiar su estado a deleted
-    const user = await validateUserIdAndGetUser(req, res);
+    const user = req.user;
 
     await user.update({
       status: "deleted",

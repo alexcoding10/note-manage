@@ -6,18 +6,22 @@ import {
   getNoteByIdHandler,
   updateNoteHandler,
   deleteNoteHandler,
+  getNoteHistoryHandler
 } from "../controllers/note.controller.js";
+import {checkToken} from "../middleware/auth.middleware.js";
 
 const routerNote = Router();
 
-routerNote.post("/user/:id/note", createNoteForUserHandler);
+routerNote.post("/note", checkToken, createNoteForUserHandler);
 
-routerNote.get("/user/:id/notes", getAllNotesForUserHandler);
+routerNote.get("/notes", checkToken, getAllNotesForUserHandler);
 
-routerNote.get("/user/:id/note/:noteId", getNoteByIdHandler);
+routerNote.get("/note/:noteId", checkToken, getNoteByIdHandler);
 
-routerNote.put("/user/:id/note/:noteId", updateNoteHandler);
+routerNote.get("/note/:noteId/history", checkToken, getNoteHistoryHandler);
 
-routerNote.delete("/user/:id/note/:noteId", deleteNoteHandler);
+routerNote.put("/note/:noteId", checkToken, updateNoteHandler);
+
+routerNote.delete("/note/:noteId",checkToken,deleteNoteHandler);
 
 export default routerNote;

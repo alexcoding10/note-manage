@@ -2,36 +2,34 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('UserNote', {
-      UserId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'user',
-          key: 'id'
-        }
+  up: async (queryInterface, Sequelize) => {
+    // Agregar la columna NoteId a la tabla NoteHistory
+    await queryInterface.addColumn('NoteHistory', 'NoteId', {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Note', // Nombre de la tabla a la que se hace referencia
+        key: 'id', // Nombre de la columna de la tabla a la que se hace referencia
       },
-      NoteId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'note',
-          key: 'id'
-        }
+    });
+
+    // Establecer la relación entre NoteHistory y Note
+    await queryInterface.addConstraint('NoteHistory', {
+      fields: ['NoteId'],
+      type: 'foreign key',
+      name: 'fk_NoteHistory_Note',
+      references: {
+        table: 'Note',
+        field: 'id',
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      onDelete: 'CASCADE', // Opcional: especifica la acción a realizar cuando se elimina una nota
+      onUpdate: 'CASCADE', // Opcional: especifica la acción a realizar cuando se actualiza una nota
     });
   },
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('UserNote');
+  down: async (queryInterface, Sequelize) => {
+    // Revertir los cambios realizados en la migración
+    await queryInterface.removeColumn('NoteHistory', 'NoteId');
+    await queryInterface.removeConstraint('NoteHistory', 'fk_NoteHistory_Note');
   }
 };
