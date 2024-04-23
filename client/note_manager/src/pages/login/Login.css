@@ -1,0 +1,87 @@
+/* Estilos para el contenedor del formulario de inicio de sesión */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 8px;
+    background-color: #333;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+  
+  /* Estilos para el título del formulario */
+  .login-container h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  /* Estilos para los campos de entrada */
+  .login-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #444;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container input:focus {
+    background-color: #555;
+  }
+  
+  /* Estilos para el botón de inicio de sesión */
+  .login-container button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para el mensaje de error */
+  .error-message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ff6347;
+    text-align: center;
+  }
+  
+  /* Estilos para el enlace de inicio de sesión */
+  .login-link {
+    text-align: center;
+    color: #bbb;
+  }
+  
+  .login-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .link{
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease; 
+  }
+  .link:hover{
+    color: #007bff;
+  }
+
+  .container-link{
+    padding: 10px;
+    text-align: center;
+  }
